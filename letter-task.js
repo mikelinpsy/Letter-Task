@@ -163,12 +163,13 @@ var debrief_block = {
 
         var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
         var rtvalid = Math.round(rtvalid_trials.count() / trials.count() * 100);
-        var rt = Math.round(correct_trials.select('rt').mean());
+        var valid = Math.round(valid_trials.count() / trials.count() * 100);
+        var rt = Math.round(valid_trials.select('rt').mean());
         var global_rt = Math.round(valid_global_trials.select('rt').mean());
         var local_rt = Math.round(valid_local_trials.select('rt').mean());
 
-        return "<p>You responded correctly on " + accuracy + "% of the trials.</p>" +
-            "<p>Your average response time was " + rt + "ms.</p>" + global_rt+ local_rt +rtvalid
+        return "<p>You responded correctly on " + accuracy + "% of the trials.</p>" + rtvalid + valid
+            "<p>Your average response time was " + rt + "ms.</p>" + global_rt+ local_rt +
             "<p>Press any key to complete the experiment. Thank you!  </p>";
 
 
