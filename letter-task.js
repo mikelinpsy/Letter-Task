@@ -140,23 +140,37 @@ var debrief_block = {
         var trials = jsPsych.data.get().filter({
             test_part: 'test'
         });
+        
         var correct_trials = trials.filter({
             correct: true
         });
-        var valid_global_trials = correct_trials.filter(trials.select('rt')< trials.select('rt').mean() + 3 * trials.select('rt').sd() && {
-            catergory: 'global'
+
+        var rtvalid_trials = trials.filter(trials.select('rt')< trials.select('rt').mean() + 3 * trials.select('rt').sd()
+        && trials.select('rt')> trials.select('rt').mean() - 3 * trials.select('rt').sd()
+        );
+
+        var valid_trials = rtvalid_trials.filter({
+            correct: true
         });
+        
+        var valid_global_trials = valid_trials.filter({
+            catergory: 'global' 
+        });
+
         var valid_local_trials = correct_trials.filter({
-            catergory: 'global' && trials.select('rt')< trials.select('rt').mean() + 3 * trials.select('rt').sd()
+            catergory: 'local' 
         });
 
         var accuracy = Math.round(correct_trials.count() / trials.count() * 100);
+        var rtvalid = Math.round(rtvalid_trials.count() / trials.count() * 100);
         var rt = Math.round(correct_trials.select('rt').mean());
         var global_rt = Math.round(valid_global_trials.select('rt').mean());
+        var local_rt = Math.round(valid_local_trials.select('rt').mean());
 
         return "<p>You responded correctly on " + accuracy + "% of the trials.</p>" +
-            "<p>Your average response time was " + rt + "ms.</p>" + global_rt+
+            "<p>Your average response time was " + rt + "ms.</p>" + global_rt+ local_rt +rtvalid
             "<p>Press any key to complete the experiment. Thank you!  </p>";
+
 
     }
 };
