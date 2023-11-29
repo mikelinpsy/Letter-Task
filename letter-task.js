@@ -2,29 +2,8 @@ var repo_site = "https://mikelinpsy.github.io/Letter-Task/";
 /* create timeline */
 var timeline = [];
 /* define welcome message trial */
-var welcome_block = {
-    type: "html-keyboard-response",
-    stimulus: "Next, please complete a figure judgement task. Press any key to begin."
-};
-timeline.push(welcome_block);
-/* define instructions trial */
-var instructions = {
-    type: "html-keyboard-response",
-    stimulus: "<p>In this experiment, a circle will appear in the center " +
-        "of the screen.</p><p>If the circle is <strong>blue</strong>, " +
-        "press the letter F on the keyboard as fast as you can.</p>" +
-        "<p>If the circle is <strong>orange</strong>, press the letter J " +
-        "as fast as you can.</p>" +
-        "<div style='width: 700px;'>" +
-        "<div style='float: left;'><img src='" + repo_site + "img/blue.png'></img>" + // Change 2: Adding `repo_site` in `instructions`
-        "<p class='small'><strong>Press the F key</strong></p></div>" +
-        "<div class='float: right;'><img src='" + repo_site + "img/orange.png'></img>" + // Change 2: Adding `repo_site` in `instructions`
-        "<p class='small'><strong>Press the J key</strong></p></div>" +
-        "</div>" +
-        "<p>Press any key to begin.</p>",
-    post_trial_gap: 2000
-};
-timeline.push(instructions);
+
+
 /* test trials */
 var test_stimuli = [{
         stimulus: repo_site + "img/global_h_f.png", // Change 3: Adding `repo_site` in `test_stimuli`
@@ -111,10 +90,41 @@ var test = {
         data.correct = data.key_press == jsPsych.pluginAPI.convertKeyCharacterToKeyCode(data.correct_response);
     },
 }
+
+var practice = {
+    type: "image-keyboard-response",
+    stimulus: jsPsych.timelineVariable('stimulus'),
+    choices: ['h', 't'],
+    data: jsPsych.timelineVariable('data'),
+    on_finish: function (data) {
+        data.correct = data.key_press == jsPsych.pluginAPI.convertKeyCharacterToKeyCode(data.correct_response);
+    },
+}
+
+var practice_block = {
+    type: "html-keyboard-response",
+    stimulus: "Next, you will be in the practice stage. Press any key to begin."
+};
+timeline.push(practice_block);
+
+var practice_procedure = {
+    timeline: [fixation, practice],
+    timeline_variables: test_stimuli,
+    repetitions: 1,
+    randomize_order: true
+}
+timeline.push(practice_procedure);
+
+var test_block = {
+    type: "html-keyboard-response",
+    stimulus: "Next, you will be in the practice stage. Press any key to begin."
+};
+timeline.push(test_block);
+
 var test_procedure = {
     timeline: [fixation, test],
     timeline_variables: test_stimuli,
-    repetitions: 1,
+    repetitions: 2,
     randomize_order: true
 }
 timeline.push(test_procedure);
