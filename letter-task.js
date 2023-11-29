@@ -103,7 +103,10 @@ var practice = {
 
 var practice_block = {
     type: "html-keyboard-response",
-    stimulus: "Next, you will be in the practice stage. Press any key to begin."
+    stimulus: "Next, you will be in the practice stage.</p><p>"+ 
+            "Please press [H] when there is a larger or a smaller H </p><p>"+
+            "and press [T] when there is a larger or smaller T. </p><p>"+
+            "Now, press any key to begin."
 };
 timeline.push(practice_block);
 
@@ -117,14 +120,17 @@ timeline.push(practice_procedure);
 
 var test_block = {
     type: "html-keyboard-response",
-    stimulus: "Next, you will be in the test stage. Press any key to begin."
+    stimulus:  "Next, you will be in the test stage.</p><p>"+ 
+            "Please press [H] when there is a larger or a smaller H </p><p>"+
+            "and press [T] when there is a larger or smaller T. </p><p>"+
+            "Now, press any key to begin."
 };
 timeline.push(test_block);
 
 var test_procedure = {
     timeline: [fixation, test],
     timeline_variables: test_stimuli,
-    repetitions: 2,
+    repetitions: 8,
     randomize_order: true
 }
 timeline.push(test_procedure);
