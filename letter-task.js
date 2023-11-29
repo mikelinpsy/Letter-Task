@@ -1,19 +1,12 @@
-
-/* Change 1: Adding the image hosting site */
-// define the site that hosts stimuli images
-// usually https://<your-github-username>.github.io/<your-experiment-name>/
 var repo_site = "https://mikelinpsy.github.io/Letter-Task/"; 
-
 /* create timeline */
 var timeline = [];
-
 /* define welcome message trial */
 var welcome_block = {
     type: "html-keyboard-response",
     stimulus: "Next, please complete a figure judgement task. Press any key to begin."
 };
 timeline.push(welcome_block);
-
 /* define instructions trial */
 var instructions = {
     type: "html-keyboard-response",
@@ -32,9 +25,7 @@ var instructions = {
     post_trial_gap: 2000
 };
 timeline.push(instructions);
-
 /* test trials */
-
 var test_stimuli = [{
         stimulus: repo_site + "img/global_h_f.png", // Change 3: Adding `repo_site` in `test_stimuli`
         data: {
@@ -100,7 +91,6 @@ var test_stimuli = [{
         }
     }
 ];
-
 var fixation = {
     type: 'html-keyboard-response',
     stimulus: '<div style="font-size:60px;">+</div>',
@@ -112,7 +102,6 @@ var fixation = {
         test_part: 'fixation'
     }
 }
-
 var test = {
     type: "image-keyboard-response",
     stimulus: jsPsych.timelineVariable('stimulus'),
@@ -120,8 +109,8 @@ var test = {
     data: jsPsych.timelineVariable('data'),
     on_finish: function (data) {
         data.correct = data.key_press == jsPsych.pluginAPI.convertKeyCharacterToKeyCode(data.correct_response);
+    },
 }
-
 var test_procedure = {
     timeline: [fixation, test],
     timeline_variables: test_stimuli,
@@ -129,6 +118,4 @@ var test_procedure = {
     randomize_order: true
 }
 timeline.push(test_procedure);
-
-/* define debrief */
 
