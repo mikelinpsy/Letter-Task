@@ -117,7 +117,7 @@ timeline.push(practice_procedure);
 
 var test_block = {
     type: "html-keyboard-response",
-    stimulus: "Next, you will be in the practice stage. Press any key to begin."
+    stimulus: "Next, you will be in the test stage. Press any key to begin."
 };
 timeline.push(test_block);
 
