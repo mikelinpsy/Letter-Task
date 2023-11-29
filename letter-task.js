@@ -120,7 +120,7 @@ var test = {
     data: jsPsych.timelineVariable('data'),
     on_finish: function (data) {
         data.correct = data.key_press == jsPsych.pluginAPI.convertKeyCharacterToKeyCode(data.correct_response);
-        logrt = Math.log(jsPsych.data.get().select('rt')); 
+        data.logrt = Math.log(data.rt); 
 }
 
 var test_procedure = {
