@@ -173,8 +173,8 @@ var debrief_block = {
     
 
 
-        return "<p>You responded correctly on " + accuracy + "% of the trials.</p>" +
-            "<p>Your average response time was " + rt + "ms.</p>" +
+        return "<p>You responded correctly on % of the trials.</p>" +
+            "<p>Your average response time was ms.</p>" +
             "<p>Press any key to complete the experiment. Thank you!</p>";
 
 
