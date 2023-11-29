@@ -168,8 +168,8 @@ var debrief_block = {
         var rt = Math.round(valid_trials.select('rt').mean());
         var global_rt = Math.round(valid_global_trials.select('rt').mean());
         var local_rt = Math.round(valid_local_trials.select('rt').mean());
-        var log_global_rt = Math.round(valid_global_trials.logrt).mean());
-        var log_local_rt = Math.round(valid_local_trials.logrt).mean())
+        var log_global_rt = Math.round(Math.log(valid_global_trials.logrt)).mean());
+        var log_local_rt = Math.round(Math.log(valid_local_trials.logrt)).mean())
 
 
         return "<p>You responded correctly on " + accuracy + "% of the trials.</p>" +
