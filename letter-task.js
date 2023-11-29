@@ -168,13 +168,11 @@ var debrief_block = {
         var rt = Math.round(valid_trials.select('rt').mean());
         var global_rt = Math.round(valid_global_trials.select('rt').mean());
         var local_rt = Math.round(valid_local_trials.select('rt').mean());
-
-  
-
-
-        return "<p>You responded correctly on % of the trials.</p>" +
-            "<p>Your average response time was ms.</p>" +
+        
+        return "<p>You responded correctly on " + accuracy + "% of the trials.</p>" +
+            "<p>Your average response time was " + rt + "ms.</p>" +
             "<p>Press any key to complete the experiment. Thank you!</p>";
+
 
 
 
