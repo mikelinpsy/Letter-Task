@@ -143,7 +143,7 @@ var debrief_block = {
         var correct_trials = trials.filter({
             correct: true
         });
-        var valid_global_trials = correct_trials.filter({
+        var valid_global_trials = correct_trials.filter(trials.select('rt')< trials.select('rt').mean() + 3 * trials.select('rt').sd() && {
             catergory: 'global'
         });
         var valid_local_trials = correct_trials.filter({
